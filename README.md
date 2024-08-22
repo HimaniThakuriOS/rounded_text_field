@@ -8,9 +8,9 @@
       <img src="https://img.shields.io/pub/v/rounded_text_field.svg?style=popout&include_prereleases" />
     </a>
     <a title="Github License">
-      <img src="https://img.shields.io/github/license/bdlukaa/rounded_text_field" />
+      <img src="https://img.shields.io/github/license/himani/rounded_text_field" />
     </a>
-    <a title="Web Example" href="https://bdlukaa.github.io/rounded_text_field">
+    <a title="Web Example" href="https://github.com/HimaniThakuriOS/rounded_text_field.git">
       <img src="https://img.shields.io/badge/web-example---?style=flat-square&color=e88d0c" />
     </a>
   </p>
@@ -61,7 +61,7 @@ RoundedBackgroundText(
 ),
 ```
 
-![Simple Text](https://github.com/bdlukaa/rounded_text_field/blob/main/assets/simple_text.png?raw=true)
+![Simple Text](https://github.com/HimaniThakuriOS/rounded_text_field.git)
 
 Multiline text is also supported
 
@@ -73,7 +73,7 @@ RoundedBackgroundText(
 ),
 ```
 
-![Two Lines Text](https://github.com/bdlukaa/rounded_text_field/blob/main/assets/two_lines_text.png?raw=true)
+![Two Lines Text](https://github.com/HimaniThakuriOS/rounded_text_field.git)
 
 ### Highlight a text field:
 
@@ -89,7 +89,7 @@ RoundedBackgroundTextField(
 
 The text will be highlighted as the user types
 
-![TextField Preview](https://github.com/bdlukaa/rounded_text_field/blob/main/assets/textfield_preview.gif?raw=true)
+![TextField Preview](hhttps://github.com/HimaniThakuriOS/rounded_text_field.git)
 
 The text highlight will follow the text field scroll position.
 
@@ -112,7 +112,7 @@ RichText(
 ),
 ```
 
-![TextSpan Highlight Preview](https://github.com/bdlukaa/rounded_text_field/blob/main/assets/highlight_text_span.png?raw=true)
+![TextSpan Highlight Preview](https://github.com/HimaniThakuriOS/rounded_text_field.git)
 
 ## You may like to know:
 
@@ -150,7 +150,5 @@ With these values, we can generate the background for each line. The background 
 The inner and outer radius are dynamically calculated based on the line height, provided by the line metrics, and the given `innerRadius` and `outerRadius`, respectively. By default, `innerRadius` is `10.0` and `outerRadius` is `10.0`. For safety, in order to keep the roundnesses correct, these values must be in the bounds of `0.0` (min) and `20.0` max, otherwise the painting would be out the line.
 
 ## Contribution
-
-Feel free to [file an issue](https://github.com/bdlukaa/rounded_text_field/issues/new) if you find a problem or [make pull requests](https://github.com/bdlukaa/rounded_text_field/pulls).
 
 All contributions are welcome!
