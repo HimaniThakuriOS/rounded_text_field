@@ -577,13 +577,11 @@ class _RoundedBackgroundTextFieldState
             padding: padding,
             child: TextField(
               decoration: InputDecoration(
-                filled:
-                true,
+                // filled:
+                // true,
                 // hintText: 'Enter text',
                 border:
                 OutlineInputBorder(
-                  borderRadius:
-                  BorderRadius.circular(10),
                   borderSide:
                   BorderSide.none,
                 ),
@@ -665,7 +663,7 @@ class _RoundedBackgroundTextFieldState
               // locale: widget.locale,
               onChanged: widget.onChanged,
               onEditingComplete: widget.onEditingComplete,
-              // onSubmitted: widget.onSubmitted,
+              onSubmitted: widget.onSubmitted,
               onAppPrivateCommand: widget.onAppPrivateCommand,
               // onSelectionHandleTapped: widget.onSelectionHandleTapped,
               onTapOutside: widget.onTapOutside,
