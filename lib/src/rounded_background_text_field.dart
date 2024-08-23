@@ -501,7 +501,7 @@ class _RoundedBackgroundTextFieldState
         break;
     }
 
-    const padding = EdgeInsets.all(6.0);
+    const padding = EdgeInsets.all(12.0);
 
     final style = (widget.style ?? const TextStyle()).copyWith(
       // The text is rendered by the [EditableText] widget below.
@@ -524,13 +524,13 @@ class _RoundedBackgroundTextFieldState
             top: scrollController.hasClients
                 ? -scrollController.position.pixels
                 : null,
-            left: 0,
-            right: 0,
+            left: 6,
+            right: 6,
             child: IgnorePointer(
               child: Container(
                 padding: const EdgeInsets.only(
-                  right: 2.0,
-                  left: 1.0,
+                  right: 6.0,
+                  left: 6.0,
                   bottom: 3.0,
                 ),
                 margin: padding,
@@ -575,22 +575,29 @@ class _RoundedBackgroundTextFieldState
         Positioned.fill(
           child: Padding(
             padding: padding,
-            child: TextField(
-              decoration: InputDecoration(
-                // filled:
-                // true,
-                // hintText: 'Enter text',
-                border:
-                OutlineInputBorder(
-                  borderSide:
-                  BorderSide.none,
-                ),
-                contentPadding: const EdgeInsets
-                    .all(
-                    -8),
-                counterText:
-                "",
+            child: CupertinoTextField(
+              padding: EdgeInsets.fromLTRB(4,4,4,4), // Set vertical and horizontal padding
+              decoration: BoxDecoration(
+                color: Colors.transparent,  // Background color
+                // borderRadius: BorderRadius.circular(8.0),  // Rounded corners (optional)
+                // border: Border.all(color: Colors.transparent, width: 1.0),
+                // Border (optional)
               ),
+              // decoration: InputDecoration(
+              //   // filled:
+              //   // true,
+              //   // hintText: 'Enter text',
+              //   border:
+              //   OutlineInputBorder(
+              //     borderSide:
+              //     BorderSide.none,
+              //   ),
+              //   contentPadding: const EdgeInsets
+              //       .all(
+              //       -8),
+              //   counterText:
+              //   "",
+              // ),
               key: fieldKey,
               autofocus: widget.autofocus,
               controller: textController,
@@ -598,7 +605,7 @@ class _RoundedBackgroundTextFieldState
               scrollPhysics: widget.scrollPhysics,
               // scrollBehavior: widget.scrollBehavior,
               scrollController: scrollController,
-              scrollPadding: widget.scrollPadding,
+              // scrollPadding: widget.scrollPadding,
               style: (widget.style ?? const TextStyle()).copyWith(
                 fontSize: fontSize,
                 leadingDistribution: TextLeadingDistribution.proportional,
@@ -614,7 +621,7 @@ class _RoundedBackgroundTextFieldState
                   Colors.black,
               cursorWidth: widget.cursorWidth,
               cursorHeight: widget.cursorHeight,
-              cursorRadius: widget.cursorRadius,
+              // cursorRadius: widget.cursorRadius,
               // paintCursorAboveText: paintCursorAboveText,
               cursorOpacityAnimates: cursorOpacityAnimates,
               // cursorOffset: cursorOffset,
@@ -625,7 +632,7 @@ class _RoundedBackgroundTextFieldState
               enableInteractiveSelection: widget.enableInteractiveSelection,
               // selectionColor: selectionColor,
               selectionControls:
-                  widget.selectionEnabled ? textSelectionControls : null,
+              widget.selectionEnabled ? textSelectionControls : null,
               textDirection: widget.textDirection,
               // showSelectionHandles: widget.showSelectionHandles,
               showCursor: widget.showCursor,
@@ -642,9 +649,9 @@ class _RoundedBackgroundTextFieldState
               clipBehavior: widget.clipBehavior,
               restorationId: widget.restorationId,
               enableIMEPersonalizedLearning:
-                  widget.enableIMEPersonalizedLearning,
+              widget.enableIMEPersonalizedLearning,
               inputFormatters: widget.inputFormatters,
-              mouseCursor: widget.mouseCursor,
+              // mouseCursor: widget.mouseCursor,
               // rendererIgnoresPointer: widget.rendererIgnoresPointer,
               obscureText: widget.obscureText,
               obscuringCharacter: widget.obscuringCharacter,
@@ -652,7 +659,7 @@ class _RoundedBackgroundTextFieldState
               // onSelectionChanged: widget.onSelectionChanged,
               dragStartBehavior: widget.dragStartBehavior,
               contentInsertionConfiguration:
-                  widget.contentInsertionConfiguration,
+              widget.contentInsertionConfiguration,
               contextMenuBuilder: widget.contextMenuBuilder,
               spellCheckConfiguration: widget.spellCheckConfiguration,
               magnifierConfiguration: widget.magnifierConfiguration,
@@ -664,7 +671,7 @@ class _RoundedBackgroundTextFieldState
               onChanged: widget.onChanged,
               onEditingComplete: widget.onEditingComplete,
               onSubmitted: widget.onSubmitted,
-              onAppPrivateCommand: widget.onAppPrivateCommand,
+              // onAppPrivateCommand: widget.onAppPrivateCommand,
               // onSelectionHandleTapped: widget.onSelectionHandleTapped,
               onTapOutside: widget.onTapOutside,
               strutStyle: widget.strutStyle,

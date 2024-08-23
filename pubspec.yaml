@@ -1,6 +1,6 @@
 name: rounded_text_field
 description: Background Text, TextField and TextSpan highlighted with rounded corners
-version: 1.0.1
+version: 1.0.2
 repository: https://github.com/HimaniThakuriOS/rounded_text_field.git
 
 environment:
