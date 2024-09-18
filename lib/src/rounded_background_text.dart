@@ -1,4 +1,4 @@
-
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../rounded_background_text.dart';
@@ -45,7 +45,7 @@ class RoundedBackgroundText extends StatelessWidget {
 
   /// Creates a rounded background text based on an [InlineSpan], that can have
   /// multiple styles
-  const RoundedBackgroundText.rich({
+  RoundedBackgroundText.rich({
     super.key,
     required this.text,
     this.textDirection,
@@ -60,6 +60,7 @@ class RoundedBackgroundText extends StatelessWidget {
     this.textHeightBehavior,
     this.innerRadius = kDefaultInnerRadius,
     this.outerRadius = kDefaultOuterRadius,
+    this.matrix,
   })  : assert(innerRadius >= 0.0 && innerRadius <= 20.0),
         assert(outerRadius >= 0.0 && outerRadius <= 20.0);
 
@@ -246,6 +247,8 @@ class RoundedBackgroundText extends StatelessWidget {
   /// {@endtemplate}
   final double outerRadius;
 
+  // transform matrix to handle transformations
+  Matrix4? matrix = Matrix4.identity();
   @override
   Widget build(BuildContext context) {
     final defaultTextStyle = DefaultTextStyle.of(context);
@@ -273,22 +276,75 @@ class RoundedBackgroundText extends StatelessWidget {
       ellipsis: ellipsis,
     );
 
+    void handleTapDown(
+      TapDownDetails details, {
+      required InlineSpan text,
+      required List<dynamic> spans,
+    }) {
+      // Create a TextPainter to perform hit testing for the entire text
+      final textPainter = TextPainter(
+        text: text,
+        textDirection: TextDirection.ltr,
+        maxLines: null,
+      );
+
+      // Layout the text to calculate the positions
+      textPainter.layout(
+          maxWidth: double.infinity); // Assuming full width for layout
+
+      // Iterate through each TextSpan
+      for (final dynamic inlineSpan in spans) {
+        if (inlineSpan is TextSpan && inlineSpan.recognizer != null) {
+          final recognizer = inlineSpan.recognizer;
+          if (recognizer != null && recognizer is TapGestureRecognizer) {
+            recognizer.onTap?.call();
+            break; // Exit loop after finding and handling the correct recognizer
+          }
+        }
+      }
+    }
+
     return LayoutBuilder(builder: (context, constraints) {
       painter.layout(
         maxWidth: constraints.maxWidth,
         minWidth: constraints.minWidth,
       );
-      return CustomPaint(
-        isComplex: true,
-        size: Size(
-          painter.width.clamp(0, constraints.maxWidth),
-          painter.height.clamp(0, constraints.maxHeight),
-        ),
-        painter: RoundedBackgroundTextPainter(
-          backgroundColor: backgroundColor ?? Colors.transparent,
-          text: painter,
-          innerRadius: innerRadius,
-          outerRadius: outerRadius,
+      return GestureDetector(
+        behavior:
+            HitTestBehavior.translucent, // Ensures gestures can be detected
+        onTapDown: (details) {
+          TextSpan span = text as TextSpan; // Ensure text is a TextSpan
+          matrix ??= Matrix4.identity();
+          // Get the transformed tap position
+          final transformedPosition =
+              MatrixUtils.transformPoint(matrix!, details.localPosition);
+
+          // Create new TapDownDetails with the transformed position
+          final newDetails = TapDownDetails(
+            globalPosition: details.globalPosition,
+            localPosition: transformedPosition,
+            kind: details.kind,
+          );
+
+          handleTapDown(
+            newDetails,
+            text: text,
+            spans: span.children!,
+          );
+        },
+
+        child: CustomPaint(
+          isComplex: true,
+          size: Size(
+            painter.width.clamp(0, constraints.maxWidth),
+            painter.height.clamp(0, constraints.maxHeight),
+          ),
+          painter: RoundedBackgroundTextPainter(
+            backgroundColor: backgroundColor ?? Colors.transparent,
+            text: painter,
+            innerRadius: innerRadius,
+            outerRadius: outerRadius,
+          ),
         ),
       );
     });
